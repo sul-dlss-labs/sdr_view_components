@@ -20,7 +20,7 @@ module Sdr
         def call
           tag.button(
             class: ButtonSupport.classes(variant: @variant, size: @size, classes: @classes, bordered: @bordered),
-            type: "button",
+            type: 'button',
             **options
           ) do
             label || content
