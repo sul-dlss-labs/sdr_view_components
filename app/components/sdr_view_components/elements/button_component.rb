@@ -18,7 +18,8 @@ module SdrViewComponents
 
       def call
         tag.button(
-          class: ButtonSupport.classes(variant: @variant, size: @size, classes: @classes, bordered: @bordered),
+          class: ComponentSupport::ButtonSupport.classes(variant: @variant, size: @size, classes: @classes,
+                                                         bordered: @bordered),
           type: 'button',
           **options
         ) do
