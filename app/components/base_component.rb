@@ -2,6 +2,16 @@
 
 # Base component.
 class BaseComponent < ViewComponent::Base
+  def set_component_attributes(**kwargs)
+    @title = kwargs[:title]
+    @variant = kwargs[:variant] || :info
+    @dismissible = kwargs[:dismissible] || false
+    @data = kwargs[:data] || {}
+    @classes = kwargs[:classes] || []
+    @id = kwargs[:id]
+    @role = kwargs[:role] || 'alert'
+  end
+
   # Merge classes together.
   #
   # @param args [Array<String>, String] The classes to merge (array, classes, space separated classes).

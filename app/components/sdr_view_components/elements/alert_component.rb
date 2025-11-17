@@ -16,18 +16,11 @@ module SdrViewComponents
 
       # Variants are :danger, :success, :note, :info, :warning, :input
       # input is not part of the component library
-      def initialize(title: nil, variant: :info, dismissible: false, data: {}, classes: [], id: nil, # rubocop:disable Metrics/ParameterLists
-                     role: 'alert')
+      def initialize(**)
+        set_component_attributes(**)
         raise ArgumentError, 'Invalid variant' unless %i[danger success note info warning
                                                          input].include?(variant.to_sym)
 
-        @title = title
-        @variant = variant.to_sym
-        @dismissible = dismissible
-        @data = data
-        @classes = classes
-        @id = id
-        @role = role
         super()
       end
 
