@@ -25,7 +25,7 @@ module SdrViewComponents
           @readonly = readonly
 
           # Argument hashes for passing through to sub-components
-          @container_args = { class: @container_classes }
+          @container_args = { class: @container_classes, data: }
           @component_args = { class: field_classes, required:, aria: field_aria, data:, form: form_id }
           @label_args = { form:, field_name:, label_text: label, hidden_label:, classes: label_classes,
                           tooltip: }
