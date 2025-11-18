@@ -1,8 +1,10 @@
 plugins:
-  - rubocop-capybara
-  - rubocop-performance
-  - rubocop-rails
   - rubocop-rake
+  - rubocop-capybara
+  - rubocop-rails
+
+
+require:
   - rubocop-rspec
   - rubocop-rspec_rails
 
