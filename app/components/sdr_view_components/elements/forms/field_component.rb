@@ -5,41 +5,46 @@ module SdrViewComponents
     module Forms
       # Base component for all form fields.
       class FieldComponent < BaseComponent
-        def initialize(form:, field_name:, required: false, hidden_label: false, label: nil, help_text: nil, # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength, Metrics/AbcSize
-                       disabled: false, hidden: false, data: {}, input_data: {}, placeholder: nil, width: nil,
-                       label_classes: [], container_classes: [], input_classes: [], tooltip: nil, caption: nil,
-                       error_classes: [], readonly: false, mark_required: false)
-          @form = form
-          @field_name = field_name
-          @mark_required = mark_required
-          @help_text = help_text
-          @hidden = hidden
-          @disabled = disabled
-          @input_data = input_data
-          @placeholder = placeholder
-          @width = width
-          @container_classes = container_classes # container_args
-          @input_classes = input_classes # component_args
-          @caption = caption
-          @error_classes = error_classes
-          @readonly = readonly
-
-          # Argument hashes for passing through to sub-components
-          @container_args = { class: @container_classes, data: }
-          @component_args = { class: field_classes, required:, aria: field_aria, data:, form: form_id }
-          @label_args = { form:, field_name:, label_text: label, hidden_label:, classes: label_classes,
-                          tooltip: }
-          @help_text_args = { id: help_text_id, help_text: }
-          @invalid_args = { form:, field_name: }
-
+        def initialize(**args)
+          @args = args
           super()
         end
 
-        attr_reader :form, :field_name, :hidden, :disabled, :placeholder, :width, :input_data, :caption, :readonly,
-                    :container_args, :component_args, :label_args, :help_text_args, :invalid_args
+        attr_reader :args
 
-        def help_text_id
-          @help_text_id ||= form.field_id(field_name, 'help')
+        def call
+          content_tag :div, container_args do
+            safe_join(
+              [
+                component,
+                render(SdrViewComponents::Elements::Forms::LabelComponent.new(form:, field_name:, **label_args)),
+                render(SdrViewComponents::Elements::Forms::HelpTextComponent.new(**help_text_args)),
+                render(SdrViewComponents::Elements::Forms::InvalidFeedbackComponent.new(form:, field_name:))
+              ].compact
+            )
+          end
+        end
+
+        def input_args
+          args_for(args:, prefix: 'input_').merge({ aria: field_aria, data: })
+        end
+
+        def container_args
+          args_for(args:, prefix: 'container_')
+        end
+
+        def data
+          @data ||= args.delete(:data) || {}
+        end
+
+        def error_aria
+          InvalidFeedbackSupport.arias_for(field_name:, form:).tap do |arias|
+            arias[:describedby] = merge_actions(arias[:describedby], help_text_id) if help_text_args[:text].present?
+          end
+        end
+
+        def error_classes
+          merge_classes(args.fetch(:error_classes, []))
         end
 
         def field_aria
@@ -53,28 +58,26 @@ module SdrViewComponents
           end
         end
 
-        def error_aria
-          InvalidFeedbackSupport.arias_for(field_name:, form:).tap do |arias|
-            arias[:describedby] = merge_actions(arias[:describedby], help_text_id) if @help_text.present?
-          end
+        def field_name
+          @field_name ||= args.delete(:field_name)
         end
 
-        def styles
-          return if width.blank?
-
-          "max-width: #{width}px;"
+        def form
+          @form ||= args.delete(:form)
         end
 
-        def container_classes
-          merge_classes(@container_classes)
+        def help_text_args
+          args_for(args:, prefix: 'help_').merge({
+                                                   id: help_text_id
+                                                 })
         end
 
-        def field_classes
-          merge_classes(@input_classes)
+        def help_text_id
+          @help_text_id ||= form.field_id(field_name, 'help')
         end
 
-        def error_classes
-          merge_classes(@error_classes)
+        def label_args
+          args_for(args:, prefix: 'label_')
         end
 
         delegate :id, to: :form, prefix: true
