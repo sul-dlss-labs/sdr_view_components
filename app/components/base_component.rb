@@ -17,4 +17,10 @@ class BaseComponent < ViewComponent::Base
   def merge_actions(*)
     ComponentSupport::CssClasses.merge(*)
   end
+
+  def args_for(args:, prefix:)
+    args.each_with_object({}) do |(key, value), h|
+      h[key.to_s.delete_prefix(prefix).to_sym] = value if key.to_s.start_with?(prefix)
+    end
+  end
 end

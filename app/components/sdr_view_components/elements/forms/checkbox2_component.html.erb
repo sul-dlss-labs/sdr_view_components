@@ -1,0 +1,6 @@
+<%= tag.div class: container_classes, **container_args do %>
+  <%= form.checkbox field_name, class: input_classes, 'aria-describedby': aria_describedby, **input_args %>
+  <%= render SdrViewComponents::Elements::Forms::LabelComponent.new(form:, field_name:, **label_args) %>
+  <%= render SdrViewComponents::Elements::Forms::HelpTextComponent.new(form:, field_name:, **help_args) %>
+  <%= render SdrViewComponents::Elements::Forms::InvalidFeedbackComponent.new(form:, field_name:, **feedback_args) %>
+<% end %>

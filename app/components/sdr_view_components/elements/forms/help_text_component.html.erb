@@ -1,3 +1,5 @@
 <div>
-    <%= tag.p id:, class: 'form-text' do %><%= help_text || content %><% end %>
+  <%= tag.p id:, class: 'form-text', **args do %>
+    <%= help_text || content %>
+  <% end %>
 </div>
