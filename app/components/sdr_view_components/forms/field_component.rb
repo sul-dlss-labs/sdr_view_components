@@ -11,7 +11,7 @@ module SdrViewComponents
         super()
       end
 
-      attr_reader :args, :container_args, :label_args, :help_text_args
+      attr_reader :args
 
       def input_args
         args_for(args:, prefix: 'input_').merge({ aria: field_aria, data: })
