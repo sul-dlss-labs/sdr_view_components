@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SdrViewComponents::Elements::Forms::ToggleComponent, type: :component do # rubocop:disable RSpec/MultipleMemoizedHelpers
+RSpec.describe SdrViewComponents::Forms::ToggleComponent, type: :component do # rubocop:disable RSpec/MultipleMemoizedHelpers
   let(:form) { ActionView::Helpers::FormBuilder.new(nil, test_form, vc_test_view_context, {}) }
   let(:form_class) do
     Class.new(ApplicationForm) do

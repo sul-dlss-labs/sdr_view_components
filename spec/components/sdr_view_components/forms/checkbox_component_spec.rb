@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SdrViewComponents::Elements::Forms::CheckboxComponent, type: :component do
+RSpec.describe SdrViewComponents::Forms::CheckboxComponent, type: :component do
   let(:form) { ActionView::Helpers::FormBuilder.new(nil, test_form, vc_test_view_context, {}) }
   let(:field_name) { :test_checkbox }
   let(:form_class) do
