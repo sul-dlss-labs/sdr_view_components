@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'active_model'
+
 class ApplicationForm
   include ActiveModel::Model # Include this one first!
   include ActiveModel::Attributes
