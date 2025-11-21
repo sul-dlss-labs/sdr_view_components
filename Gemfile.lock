@@ -225,14 +225,6 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.13.2)
     simplecov_json_formatter (0.1.4)
-    sqlite3 (2.8.0-aarch64-linux-gnu)
-    sqlite3 (2.8.0-aarch64-linux-musl)
-    sqlite3 (2.8.0-arm-linux-gnu)
-    sqlite3 (2.8.0-arm-linux-musl)
-    sqlite3 (2.8.0-arm64-darwin)
-    sqlite3 (2.8.0-x86_64-darwin)
-    sqlite3 (2.8.0-x86_64-linux-gnu)
-    sqlite3 (2.8.0-x86_64-linux-musl)
     stringio (3.1.8)
     thor (1.4.0)
     tsort (0.2.0)
@@ -278,7 +270,6 @@ DEPENDENCIES
   rubocop-rspec_rails
   sdr_view_components!
   simplecov
-  sqlite3
 
 BUNDLED WITH
    2.7.2
