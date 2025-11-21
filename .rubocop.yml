@@ -3,6 +3,8 @@ plugins:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rake
+
+require:
   - rubocop-rspec
   - rubocop-rspec_rails
 

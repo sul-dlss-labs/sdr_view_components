@@ -7,6 +7,7 @@ gemspec
 
 gem 'capybara'
 gem 'debug'
+gem 'panolint'
 gem 'propshaft'
 gem 'puma'
 gem 'rspec-rails'
