@@ -2,7 +2,8 @@
 
 module SdrViewComponents
   module Structure
-    # Component for rendering page header.
+    # Component for proving style overrides for dark variant header.
+    # Used to set custom background color if provided.
     class StyleOverrideDarkComponent < BaseComponent
       def initialize(background_color:)
         @background_color = background_color

@@ -3,9 +3,9 @@
 module SdrViewComponents
   module Elements
     module Navigation
-      # Component for rendering an alert.
+      # Component for rendering a dropdown menu in the navigation bar.
       class DropdownMenuComponent < BaseComponent
-        renders_many :links
+        renders_many :items
 
         def initialize(text:)
           @text = text

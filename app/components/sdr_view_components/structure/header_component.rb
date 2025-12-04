@@ -18,6 +18,11 @@ module SdrViewComponents
         dark: 'bg-dark sky-dark'
       }.freeze
 
+      # param title [String] The main application title text.
+      # param subtitle [String, nil] An optional subtitle text.
+      # param variant [Symbol] One of :light, :dark, :white - determines color scheme.
+      # param background_color [String, nil] Optional RGB color value for background (i.e. '1, 104, 149').
+      #                                      Used only when variant is :dark.
       def initialize(title:, subtitle: nil, variant: :light, background_color: nil)
         @title = title
         @subtitle = subtitle
@@ -26,7 +31,7 @@ module SdrViewComponents
         super()
       end
 
-      attr_reader :title, :subtitle, :variant, :background_color
+      attr_reader :variant, :background_color
 
       def masthead_classes
         merge_classes('masthead', VARIANT_MASTHEAD_CLASS[variant])
@@ -40,6 +45,18 @@ module SdrViewComponents
         return render SdrViewComponents::Structure::StyleOverrideLightComponent.new unless variant == :dark
 
         render SdrViewComponents::Structure::StyleOverrideDarkComponent.new(background_color:)
+      end
+
+      def subtitle
+        return if @subtitle.blank?
+
+        tag.span @subtitle, class: 'h4 d-block my-1'
+      end
+
+      def title
+        tag.div(class: 'h1 my-0') do
+          link_to @title, '/'
+        end
       end
     end
   end
