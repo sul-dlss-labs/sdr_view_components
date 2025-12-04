@@ -23,11 +23,13 @@ module SdrViewComponents
       # param variant [Symbol] One of :light, :dark, :white - determines color scheme.
       # param background_color [String, nil] Optional RGB color value for background (i.e. '1, 104, 149').
       #                                      Used only when variant is :dark.
-      def initialize(title:, subtitle: nil, variant: :light, background_color: nil)
+      # param sul_logo [String, nil] Optional URL for SUL logo image. (polychrome, stacked-lg, stacked-mobile)
+      def initialize(title:, subtitle: nil, variant: :light, background_color: nil, sul_logo: nil)
         @title = title
         @subtitle = subtitle
         @variant = variant
         @background_color = background_color
+        @sul_logo = sul_logo
         super()
       end
 
@@ -51,6 +53,12 @@ module SdrViewComponents
         return if @subtitle.blank?
 
         tag.span @subtitle, class: 'h4 d-block my-1'
+      end
+
+      def sul_logo
+        logo_classes = merge_classes('mb-0 navbar-brand navbar-logo', @sul_logo)
+
+        link_to 'Stanford University Libraries', 'https://library.stanford.edu', class: logo_classes
       end
 
       def title
