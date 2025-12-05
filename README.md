@@ -7,22 +7,20 @@
 A rails gem to provide reusable view components used throughout the SDR applications and implement
 component library assets.
 
-# NOTE: Under Development
+# Installation
 
-Until initial development is complete and this gem is published, it can only be used locally. Install by cloning the repository to your local system and then including it in your gemfile as:
+Add to gemfile:
 
 ```
-gem 'sdr_view_components', path: '../sdr_view_components'
+gem 'sdr_view_components'
 ```
-
-Or via github path
 
 ## Requirements
 
 This set of components relies on the component library stylesheets, add:
 
 ```
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sul-dlss/component-library@v2025-09-11/styles/sul.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sul-dlss/component-library@v2025-09-11/styles/sul.css">
 ```
 
 with the most recent date tagged release to your `application.html.erb` layout file.
@@ -53,7 +51,7 @@ Supported header variations are `:dark`, `:light`, and `:white` (default is `:li
 <% end %>
 ```
 
-The `:dark` variation supports providing an rgb value via the `rgb_color_str` param in order to override the default dark background, for example:
+The `:dark` variation supports providing an rgb value via the `background_color` param in order to override the default dark background, for example:
 
 ```
 <%= render SdrViewComponents::Structure::HeaderComponent.new(title: 'Test Header', subtitle: 'Test Subtitle', variant: :dark, rgb_color_str: '1, 104, 149') do |header| %>
@@ -63,14 +61,10 @@ The `:dark` variation supports providing an rgb value via the `rgb_color_str` pa
 <% end %>
 ```
 
+By default, the SUL Rosette is included in the header, this can be disabled by setting `rosette: false` in the parameter list when instantiating the header.
+
 ### General usage:
 
 ```
 <% render SdrViewComponent::....>
 ```
-
-## Contributing
-Contribution directions go here.
-
-## License
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
