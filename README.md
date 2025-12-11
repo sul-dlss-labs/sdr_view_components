@@ -38,7 +38,7 @@ Supported header variations are `:dark`, `:light`, and `:white` (default is `:li
   <% end %>
   <% header.with_primary_navigation_link do %>
     <%= render SdrViewComponents::Elements::Navigation::DropdownMenuComponent.new(text: 'Logged in: amcollie-preview-dropdown') do |dropdown| %>
-      <% dropdown.with_link do %>
+      <% dropdown.with_item do %>
         <%= link_to 'Logout', '/Shibboleth.sso/Logout', class: 'dropdown-item' %>
       <% end %>
     <% end %>

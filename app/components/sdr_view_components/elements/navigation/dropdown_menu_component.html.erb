@@ -6,7 +6,7 @@
     <%= text %>
   </button>
   <ul class="dropdown-menu">
-    <%= items.map do |item| %>
+    <% items.each do |item| %>
       <li><%= item %></li>
     <% end %>
   </ul>
